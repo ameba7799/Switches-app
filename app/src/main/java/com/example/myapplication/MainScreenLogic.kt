@@ -8,8 +8,12 @@ class MainScreenLogic(initialSize: Int = 3) {
         addAll(List(initialSize) { i -> Item(num = i + 1) })
     }
     private var isWon = false
-    private val ON_CHANCE = 0.5
-    private val OFF_CHANCE = 0.5
+    private var onChance = 0.5
+    private val minOnChance = 0.0
+    private var offChance = 0.0
+    private val maxOffChance = 0.5
+    private var newChance = 0.5
+    private val minNewChance = 0.0
 
     fun change(item: Item) {
         for (i in items ) {
@@ -20,11 +24,27 @@ class MainScreenLogic(initialSize: Int = 3) {
             }
 
             if (i.isOn) {
-                i.isOn = !(Random.nextDouble(0.0, 1.0) <= ON_CHANCE)
+                i.isOn = !checkChance(onChance)
             } else {
-                i.isOn = Random.nextDouble(0.0, 1.0) <= OFF_CHANCE
+                i.isOn = checkChance(offChance)
             }
         }
+
+        if (checkChance(newChance)) {
+            addItem()
+        }
+    }
+
+    private fun checkChance(value: Double) : Boolean {
+        return Random.nextDouble(0.0, 1.0) <= value
+    }
+
+    private fun addItem() {
+        items.add(Item(items.size+1))
+
+        if (onChance > minOnChance) { onChance -= 0.01 }
+        if (offChance < maxOffChance) { offChance += 0.05 }
+        if (newChance > minNewChance) { newChance -= 0.01 }
     }
 }
 
