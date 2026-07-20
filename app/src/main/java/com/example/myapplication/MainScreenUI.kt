@@ -1,25 +1,17 @@
 package com.example.myapplication
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myapplication.ui.components.MyColumn
+import com.example.myapplication.ui.components.MyRow
+import com.example.myapplication.ui.components.MySwitch
 
 @Preview(
     showBackground = true,
@@ -34,61 +26,49 @@ fun MainScreen (
 
     LazyColumn(modifier = modifier) {
         item {
-            MainScreenText(Modifier.fillMaxWidth().padding(horizontal = 8.dp))
+            MainScreenText()
         }
-        logic.items.forEach { item ->
-            item {
-                MainScreenSwitchRow (item = item, logic = logic)
-            }
+        items(count = logic.getSize()) {i ->
+            MainScreenSwitchRow (index = i, logic = logic)
         }
     }
 }
 
 @Composable
 fun MainScreenText(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.height(160.dp),
-        verticalArrangement = Arrangement.Center,
+    MyColumn(modifier = modifier,
     ) {
         Text(
-            modifier = modifier,
             text = "SWITCH ON",
-            fontSize = 25.sp,
-            textAlign = TextAlign.Center,
+            fontSize = 35.sp,
         )
         Text(
-            modifier = modifier.padding(4.dp),
             text = "ALL",
-            fontSize = 30.sp,
-            textAlign = TextAlign.Center,
+            fontSize = 40.sp,
             fontWeight = FontWeight(1000)
         )
         Text(
-            modifier = modifier,
             text = "THE SWITCHES",
-            fontSize = 25.sp,
-            textAlign = TextAlign.Center,
+            fontSize = 35.sp,
         )
     }
 }
 
 @Composable
-fun MainScreenSwitchRow (modifier: Modifier = Modifier, item: Item, logic: MainScreenLogic) {
-    Row(modifier = Modifier.fillMaxWidth().height(80.dp).padding(horizontal = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+fun MainScreenSwitchRow (modifier: Modifier = Modifier, index: Int, logic: MainScreenLogic) {
+    MyRow() {
         Text(
-            modifier = Modifier.padding(horizontal = 32.dp),
-            text = item.text,
+            text = "Switch $index",
             fontSize = 25.sp,
         )
         Spacer(
             modifier = Modifier.weight(1.0F),
         )
-        Switch(
-            modifier = Modifier.scale(1.4F).padding(40.dp),
-            checked = item.isOn,
+        MySwitch(
+            color = logic.getColor(index),
+            checked = logic.getValue(index),
             onCheckedChange = {
-                logic.change(item)
+                logic.change(index, it)
             },
         )
     }
