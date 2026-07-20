@@ -20,7 +20,7 @@ enum class Screens {
 
 @Composable
 fun App () {
-    var currentScreen by remember { mutableStateOf(Screens.MAIN) }
+    var currentScreen by remember { mutableStateOf(Screens.WIN) }
 
     MyApplicationTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

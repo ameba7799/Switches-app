@@ -13,6 +13,7 @@ import com.example.myapplication.components.MyCard
 import com.example.myapplication.components.MyColumn
 import com.example.myapplication.components.MyRow
 import com.example.myapplication.components.MySwitch
+import com.example.myapplication.ui.theme.AnimateColor
 
 @Preview(
     showBackground = true,
@@ -47,7 +48,8 @@ fun MainScreenText(modifier: Modifier = Modifier) {
         Text(
             text = "ALL",
             fontSize = 40.sp,
-            fontWeight = FontWeight(1000)
+            fontWeight = FontWeight(1000),
+            color = AnimateColor()
         )
         Text(
             text = "THE SWITCHES",
