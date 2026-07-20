@@ -1,11 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.mainscreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import com.example.myapplication.ui.theme.colorsList
+import com.example.myapplication.ui.theme.getRandomColor
 import kotlin.random.Random
 
 
@@ -35,13 +35,14 @@ class MainScreenLogic(initialSize: Int = 3, val onWin: () -> Unit = {null}) {
         }
 
         switches.forEach { switch ->
-            switch.isOn = if (switch.isOn) !checkChance(onChance) else checkChance(offChance)
+            switch.isOn =
+                if (switch.isOn) !checkChance(onChance) else checkChance(offChance)
         }
 
         switches[index].isOn = value
 
         if (checkChance(newChance)) {
-            onAddSwitch()
+            addSwitch()
         }
 
         checkWin()
@@ -64,8 +65,6 @@ class MainScreenLogic(initialSize: Int = 3, val onWin: () -> Unit = {null}) {
     }
 
     private fun onAddSwitch() {
-        addSwitch()
-
         if (onChance > minOnChance) { onChance -= 0.15 * (onChance - minOnChance) }
         if (offChance < maxOffChance) { offChance += 0.15 * (maxOffChance - offChance) }
         if (newChance > minNewChance) { newChance -= 0.05 * (newChance - minNewChance) }
@@ -78,10 +77,12 @@ class MainScreenLogic(initialSize: Int = 3, val onWin: () -> Unit = {null}) {
     }
 
     private fun addSwitch() {
+        onAddSwitch()
+
         var tmp: SwitchData
         do {
-            tmp = SwitchData(color = colorsList[Random.nextInt(0, colorsList.size)])
-        } while (switches.size > 1 && switches[switches.size-1].color == tmp.color)
+            tmp = SwitchData(color = getRandomColor())
+        } while (switches.isNotEmpty() && switches.last().color == tmp.color)
         switches.add(tmp)
     }
 }

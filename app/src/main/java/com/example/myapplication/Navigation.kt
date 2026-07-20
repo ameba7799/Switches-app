@@ -9,7 +9,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.example.myapplication.mainscreen.MainScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.winscreen.WinScreen
 
 enum class Screens {
     MAIN,
@@ -23,13 +25,17 @@ fun App () {
     MyApplicationTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
             when (currentScreen) {
-                Screens.MAIN -> {MainScreen(
-                    modifier = Modifier.padding(innerPadding),
-                    onWin = {currentScreen = Screens.WIN}
-                    )}
-                Screens.WIN -> {WinScreen(
-                    modifier = Modifier.padding(innerPadding)
-                )}
+                Screens.MAIN -> {
+                    MainScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        onWin = { currentScreen = Screens.WIN }
+                    )
+                }
+                Screens.WIN -> {
+                    WinScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
             }
         }
     }

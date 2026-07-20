@@ -1,11 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.winscreen
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.ui.components.MyColumn
+import com.example.myapplication.components.MyColumn
 
 @Preview(
     showBackground = true,
