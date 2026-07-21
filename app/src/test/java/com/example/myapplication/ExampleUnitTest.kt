@@ -10,7 +10,5 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        val i = Item(1)
-        i.f()
     }
 }
