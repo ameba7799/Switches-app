@@ -35,7 +35,7 @@ fun WinScreen(modifier: Modifier = Modifier) {
 @Composable
 fun DarkWinScreen (modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier.padding( top = 0.dp, start = 16.dp, end = 16.dp, bottom = 40.dp),
         shape = RoundedCornerShape(28.dp),
         border = BorderStroke(
             width = 4.dp,

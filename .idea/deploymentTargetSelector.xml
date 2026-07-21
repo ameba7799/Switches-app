@@ -3,11 +3,11 @@
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">
-        <option name="selectionMode" value="DIALOG" />
-        <DropdownSelection timestamp="2026-07-21T19:22:05.741278057Z">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2026-07-21T19:42:41.900767707Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/home/amelia/.android/avd/Pixel_9a.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=63031JEBF15960" />
             </handle>
           </Target>
         </DropdownSelection>
